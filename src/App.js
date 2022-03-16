@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import {
+  BrowserRouter,
+  // Switch,
+  Route,
+  // Redirect,
+  Routes,
+} from "react-router-dom";
+// import NavBar from "./components/NavBar";
+// import Footer from "./components/Footer";
+// import FormCompartilhamento from "./components/FormCompartilhamentoFuncional";
+// import FormCompartilhamento from "./components/FormCompartilhamento copy";
+import Home from "./routes/Home";
+import Compartilhamento from "./routes/Compartilhamento";
+import NotFound from "./routes/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/home" element={<Home />}></Route>
+        <Route
+          exact
+          path="/compartilhamento"
+          element={<Compartilhamento />}
+        ></Route>
+        <Route exact path="*" element={<NotFound />}></Route>
+        {/* <Redirect to="/NotFound" /> */}
+      </Routes>
+    </BrowserRouter>
+    // <React.Fragment>
+    //   <NavBar></NavBar>
+    //   <FormCompartilhamento></FormCompartilhamento>
+    //   <Footer></Footer>
+    // </React.Fragment>
   );
 }
 
