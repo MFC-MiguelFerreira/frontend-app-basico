@@ -31,7 +31,7 @@ const FormCompartilhamento = () => {
       dadosObrigatorios,
       prazo,
     };
-    fetch("http://192.168.0.14:5001/compartilhar", {
+    fetch("http://192.168.0.14:5001/consent", {
       method: "POST",
       headers: {
         Accept: "application/json",

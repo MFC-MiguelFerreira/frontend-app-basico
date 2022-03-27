@@ -17,6 +17,9 @@ import NotFound from "./routes/NotFound";
 
 function App() {
   return (
+    // const data = await fetch('/test')
+    // const newUrl = data.json().url
+    // window.location = newUrl
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
