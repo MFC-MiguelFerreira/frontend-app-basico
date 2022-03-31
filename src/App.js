@@ -14,6 +14,7 @@ import {
 import Home from "./routes/Home";
 import Compartilhamento from "./routes/Compartilhamento";
 import NotFound from "./routes/NotFound";
+import Redirect from "./routes/Redirect";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/home" element={<Home />}></Route>
+        <Route exact path="/redirect/:url" element={<Redirect />}></Route>
         <Route
           exact
           path="/compartilhamento"

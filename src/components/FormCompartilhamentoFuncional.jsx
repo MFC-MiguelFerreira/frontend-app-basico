@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Form, Button, Row, Col, ListGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const instituicoes = ["Nubank", "Itaú", "Bradesco"];
 const dadosObrigatorios = [
@@ -22,6 +23,8 @@ const FormCompartilhamento = () => {
   const [instituicao, setInstituicao] = useState(instituicoes[0]);
   const [prazo, setPrazo] = useState(prazos[0]);
 
+  let navigate = useNavigate();
+
   const sendData = () => {
     const data = {
       nome,
@@ -31,15 +34,18 @@ const FormCompartilhamento = () => {
       dadosObrigatorios,
       prazo,
     };
-    fetch("http://192.168.0.14:5001/consent", {
+    fetch("http://192.168.0.8:5001/consent", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json,",
       },
       body: JSON.stringify(data),
-    }).then(() => {
+    }).then(response => {
       console.log("compartilhado");
+      // return <a href="https://www.google.com">Website</a>
+      // navigate("/home", { replace: true });
+      window.open("/redirect/www.globo.com.br");
     });
   };
 
@@ -101,7 +107,8 @@ const FormCompartilhamento = () => {
                 required
                 type="text"
                 placeholder={"Nome Completo"}
-                value={nome}
+                value={"Grande Teste"}
+                // value={nome}
                 onChange={(e) => setNome(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
@@ -117,7 +124,8 @@ const FormCompartilhamento = () => {
                 required
                 type="text"
                 placeholder={"CPF Completo"}
-                value={cpf}
+                value={"12345678900"}
+                // value={cpf}
                 onChange={(e) => setCPF(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
