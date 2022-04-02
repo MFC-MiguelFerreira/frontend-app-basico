@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { Form, Button, Row, Col, ListGroup } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 const instituicoes = ["Nubank", "Itaú", "Bradesco"];
 const dadosObrigatorios = [
@@ -22,9 +21,6 @@ const FormCompartilhamento = () => {
     useState("Gestão de Contas");
   const [instituicao, setInstituicao] = useState(instituicoes[0]);
   const [prazo, setPrazo] = useState(prazos[0]);
-  const [respostaBackend, setRespostaBackend] = useState();
-
-  let navigate = useNavigate();
 
   async function sendData(){
     const data = {
@@ -69,13 +65,12 @@ const FormCompartilhamento = () => {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      let redirect_url;
-      redirect_url = sendData().then(function(value) {
+      sendData().then(function(value) {
           console.log('SEND DATA RETURN');
           console.log(value);
           global.window && (global.window.location.href = `${value}`);
           return null;
-      })
+      });
     }
     setValidated(true);
   };
