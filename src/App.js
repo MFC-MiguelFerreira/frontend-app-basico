@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/home" element={<Home />}></Route>
-        <Route exact path="/redirect/:url" element={<Redirect />}></Route>
+        <Route exact path="/redirect/:url_from_backend" element={<Redirect />}></Route>
         <Route
           exact
           path="/compartilhamento"

@@ -22,10 +22,13 @@ const FormCompartilhamento = () => {
     useState("Gestão de Contas");
   const [instituicao, setInstituicao] = useState(instituicoes[0]);
   const [prazo, setPrazo] = useState(prazos[0]);
+  const [respostaBackend, setRespostaBackend] = useState();
 
   let navigate = useNavigate();
 
-  const sendData = () => {
+  // var resposta;
+  // const sendData = () => {
+  async function sendData(){
     const data = {
       nome,
       cpf,
@@ -33,23 +36,60 @@ const FormCompartilhamento = () => {
       instituicao,
       dadosObrigatorios,
       prazo,
-    };
-    fetch("http://192.168.0.8:5001/consent", {
+    };    
+    let sendDataReturn;
+    sendDataReturn = fetch("http://192.168.0.118:5001/consent", {
       method: "POST",
+      // redirect: 'follow',
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json,",
       },
       body: JSON.stringify(data),
-    }).then(response => {
-      console.log("compartilhado");
-      // return <a href="https://www.google.com">Website</a>
-      // navigate("/home", { replace: true });
-      window.open("/redirect/www.globo.com.br");
+    }).then(function (response) {
+      return response.json();
+    }).then(function (text) {
+      console.log('GET response:');
+      console.log(text.redirect_url);
+      console.log(typeof(text.redirect_url));
+      return text.redirect_url
+      // resposta = text.redirect_url
+      // console.log(resposta);
+      // return text.redirect_url;
+    }).then(function (redirect_url) {
+      console.log('Redirect Url:');
+      console.log(redirect_url);
+      return redirect_url
+      // setRespostaBackend(redirect_url);
+      // console.log(respostaBackend);
     });
+    return sendDataReturn;
+    // .then(response => {
+    //   console.log("compartilhado");
+    //   console.log(response.redirect_url);
+    //   console.log(response);
+    //   console.log(response.body);
+    //   console.log(response.body.getReader());
+    //   console.log(response.headers);
+    //   console.log(response.json);
+    //   console.log(response.json());
+    //   console.log(response.json().catch());
+
+    //   // if (response.redirected) {
+    //   //   window.location.href = response.url;
+    //   // }
+    //   // return <a href="https://www.google.com">Website</a>
+    //   // navigate("/redirect", { replace: true });
+    //   // window.open("/redirect/www.globo.com.br");
+    //   return response
+    // })
+    // .catch(function(err) {
+    //   console.info(err + " url: " + `${'http://192.168.0.118:5001/consent'}`);
+    // });;
   };
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       console.log(event);
@@ -57,7 +97,39 @@ const FormCompartilhamento = () => {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      sendData();
+      let redirect_url;
+      redirect_url = sendData().then(function(value) {
+          console.log('SEND DATA RETURN');
+          console.log(value);
+          // global.window && (global.window.location.href = 'https://google.com');
+          global.window && (global.window.location.href = `${value}`);
+          return null;
+          // return value;
+          // navigate(`/redirect/${value}`, { replace: true });
+      })
+      // .then(function(redirect_url) {
+      //   console.log('AFTER SEND DATA RETURN');
+      //   console.log(`/redirect/${redirect_url}`);
+        // navigate(`/redirect/${redirect_url}`, { replace: true });
+        // navigate(`/redirect/url`, { replace: true });
+        // navigate(encondeURI(`/redirect/${redirect_url}`), { replace: true });
+        // navigate(`/redirect/${value}`, { replace: true });
+      // });
+
+      // console.log('AFTER SEND DATA RETURN');
+      // console.log(redirect_url);
+      // navigate(`/redirect/${redirect_url}`, { replace: true });
+      // let redirect_url = await sendData();
+      // console.log('SEND DATA RETURN');
+      // console.log(respostaBackend);
+      // console.log(resposta);
+      // console.log(redirect_url)
+      // let resposta = sendData();
+      // navigate(`/redirect/${respostaBackend}`, { replace: true });
+      // navigate(`/redirect/${redirect_url}`, { replace: true });
+      // navigate(`/redirect/${resposta}`, { replace: true });
+      // navigate(`/redirect/url`, { replace: true });
+      // navigate(`${resposta}`, { replace: true });
     }
     setValidated(true);
   };
