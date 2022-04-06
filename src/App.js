@@ -9,6 +9,7 @@ import {
 import Home from "./routes/Home";
 import Compartilhamento from "./routes/Compartilhamento";
 import NotFound from "./routes/NotFound";
+import Sucesso from "./routes/Sucesso";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           path="/compartilhamento"
           element={<Compartilhamento />}
         ></Route>
+        <Route exact path="/sucesso/" element={<Sucesso />}></Route>
         <Route exact path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter> 

@@ -66,10 +66,10 @@ const FormCompartilhamento = () => {
       event.stopPropagation();
     } else {
       sendData().then(function(value) {
-          console.log('SEND DATA RETURN');
-          console.log(value);
-          global.window && (global.window.location.href = `${value}`);
-          return null;
+        console.log('SEND DATA RETURN');
+        console.log(value);
+        global.window && (global.window.location.href = `${value}`);
+        return null;
       });
     }
     setValidated(true);
@@ -120,8 +120,8 @@ const FormCompartilhamento = () => {
                 required
                 type="text"
                 placeholder={"Nome Completo"}
-                value={"Grande Teste"}
-                // value={nome}
+                // value={"Grande Teste"}
+                value={nome}
                 onChange={(e) => setNome(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
@@ -137,8 +137,8 @@ const FormCompartilhamento = () => {
                 required
                 type="text"
                 placeholder={"CPF Completo"}
-                value={"12345678900"}
-                // value={cpf}
+                // value={"12345678900"}
+                value={cpf}
                 onChange={(e) => setCPF(e.target.value)}
               />
               <Form.Control.Feedback type="invalid">
