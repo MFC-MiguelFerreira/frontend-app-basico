@@ -13,10 +13,15 @@ const dadosObrigatorios = [
 ];
 const prazos = ["3 Meses", "6 Meses", "9 Meses", "12 Meses"];
 
+var loc = document.location;
+let query = loc.search;
+console.log(query);
+let cpf_from_query = query.split('&')[0].split('=')[1];
+
 const FormCompartilhamento = () => {
   const [validated, setValidated] = useState(false);
   const [nome, setNome] = useState("");
-  const [cpf, setCPF] = useState("");
+  const [cpf, setCPF] = useState(cpf_from_query);
   const [objetivoCompatilhamento, setObjetivoCompatilhamento] =
     useState("Gestão de Contas");
   const [instituicao, setInstituicao] = useState(instituicoes[0]);
@@ -138,6 +143,7 @@ const FormCompartilhamento = () => {
                 type="text"
                 placeholder={"CPF Completo"}
                 // value={"12345678900"}
+                disabled
                 value={cpf}
                 onChange={(e) => setCPF(e.target.value)}
               />

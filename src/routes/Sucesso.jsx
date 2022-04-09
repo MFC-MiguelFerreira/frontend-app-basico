@@ -1,14 +1,13 @@
-import React from "react";
-
-import { Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 const Sucesso = () => {
 
+    const [sucesso, setSucesso] = useState(false);
+  
+    // Url
     var loc = document.location;
 
     let hash = loc.hash.slice(1, -1);
@@ -25,9 +24,8 @@ const Sucesso = () => {
     };
     console.log(data);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        fetch("http://192.168.0.118:5001/teste", {
+    useEffect(() => {
+      fetch("http://192.168.0.118:5001/teste", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -36,21 +34,23 @@ const Sucesso = () => {
             body: JSON.stringify(data),
         }).then(function (response) {
             console.log(response);
+            if(response.status === 200){
+              setSucesso(true);
+            }
         })
-    };  
+    }, [] );  
   
   return (
     <React.Fragment>
       <NavBar title="Open Banking"></NavBar>
-      <div className="container">
+      <div className="container" hidden={ !sucesso }>
         <h2>Sucesso</h2>
-        <p>{loc.href}</p>
-        <p>{loc.hash}</p>
-        <Button variant="primary" type="submit" size="lg" onClick={handleSubmit}>
-            Compartilhar
-        </Button>
-      <Footer></Footer>
+        <p>Conta adicionada com sucesso</p>
       </div>
+      <div className="container" hidden={ sucesso }>
+        <h2>Carregando</h2>
+      </div>
+      <Footer></Footer>
       
     </React.Fragment>
   );
