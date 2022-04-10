@@ -3,13 +3,15 @@ import "./App.css";
 import {
   BrowserRouter,
   Route,
-  Routes,
+  Routes
 } from "react-router-dom";
 
 import Home from "./routes/Home";
 import Compartilhamento from "./routes/Compartilhamento";
 import NotFound from "./routes/NotFound";
 import Sucesso from "./routes/Sucesso";
+import Gestao from "./routes/Gestao";
+import Deletado from "./routes/Deletado";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           element={<Compartilhamento />}
         ></Route>
         <Route exact path="/sucesso/" element={<Sucesso />}></Route>
+        <Route exact path="/gestao/" element={<Gestao />}></Route>
+        <Route exact path="/deletado/" element={<Deletado />}></Route>
         <Route exact path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter> 
