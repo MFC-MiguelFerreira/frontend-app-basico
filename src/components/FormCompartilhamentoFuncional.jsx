@@ -38,7 +38,7 @@ const FormCompartilhamento = () => {
     };
 
     let sendDataReturn;
-    sendDataReturn = fetch("http://192.168.0.118:5001/consent", {
+    sendDataReturn = fetch("http://localhost:5001/create_consent", {
       method: "POST",
       headers: {
         Accept: "application/json",

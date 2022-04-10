@@ -23,9 +23,11 @@ const Gestao = () => {
   var loc = document.location;
   let query = loc.search;
   let cpf = query.split('&')[0].split('=')[1];
+  let token = query.split('&')[1].split('=')[1];
 
   const data = {
-    cpf
+    cpf,
+    token
   };
 
   useEffect(() => {
@@ -62,11 +64,7 @@ const Gestao = () => {
         },
         body: JSON.stringify(data),
     }).then(function (response) {
-      navigate('/deletado',  { replace: false });
-      // navigate("http://localhost:3000/deletado/", { replace: true });
-      // global.window && (global.window.location.href = `http://localhost:3000/deletado`);
-      // navigate("/deletado", { replace: true })
-      // global.window && (global.window.location.href = `${value}`);
+      navigate('/deletado',  { replace: true });
     })
     
   };
