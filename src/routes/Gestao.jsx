@@ -23,11 +23,11 @@ const Gestao = () => {
   var loc = document.location;
   let query = loc.search;
   let cpf = query.split('&')[0].split('=')[1];
-  let token = query.split('&')[1].split('=')[1];
+  // let token = query.split('&')[1].split('=')[1];
 
   const data = {
     cpf,
-    token
+    // token
   };
 
   useEffect(() => {
@@ -75,10 +75,10 @@ const Gestao = () => {
       <div className="container" hidden={ !sucesso }>
         <h2>Gestão dos Consentimentos</h2>
         
-        <h4>Mango Bank</h4>
+        <h4>Mock Bank</h4>
         <ul>
-          <li>{consentimento.expirationDateTime}</li>
-          <li>{consentimento.status}</li>
+          <li>Data de expiração: {consentimento.expirationDateTime}</li>
+          <li>Status: {consentimento.status}</li>
         </ul>
         <Button variant="warning" onClick={ handleDelete }>Delete</Button>
       </div>
