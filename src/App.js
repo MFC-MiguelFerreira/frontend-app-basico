@@ -17,16 +17,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/home" element={<Home />}></Route>
+        <Route exact path="/openbanking-front/" element={<Home />}></Route>
+        <Route exact path="/openbanking-front/home" element={<Home />}></Route>
         <Route
           exact
-          path="/compartilhamento"
+          path="/openbanking-front/compartilhamento"
           element={<Compartilhamento />}
         ></Route>
-        <Route exact path="/sucesso/" element={<Sucesso />}></Route>
-        <Route exact path="/gestao/" element={<Gestao />}></Route>
-        <Route exact path="/deletado/" element={<Deletado />}></Route>
+        <Route exact path="/openbanking-front/sucesso/" element={<Sucesso />}></Route>
+        <Route exact path="/openbanking-front/gestao/" element={<Gestao />}></Route>
+        <Route exact path="/openbanking-front/deletado/" element={<Deletado />}></Route>
         <Route exact path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter> 
