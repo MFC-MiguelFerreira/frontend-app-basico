@@ -31,7 +31,8 @@ const Gestao = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5001/get_consent", {
+    // fetch("http://localhost:5001/get_consent", { // https://acc-manager.southindia.cloudapp.azure.com/
+    fetch("https://acc-manager.southindia.cloudapp.azure.com/get_consent", {
           method: "POST",
           headers: {
               Accept: "application/json",
@@ -56,7 +57,8 @@ const Gestao = () => {
   const handleDelete = (event) => {
     event.preventDefault();
     console.log("Botão Clicado")
-    fetch("http://localhost:5001/delete_consent", {
+    // fetch("http://localhost:5001/delete_consent", { // https://acc-manager.southindia.cloudapp.azure.com/
+    fetch("https://acc-manager.southindia.cloudapp.azure.com/delete_consent", {
         method: "POST", // Verificar método
         headers: {
             Accept: "application/json",

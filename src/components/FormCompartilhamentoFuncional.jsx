@@ -38,7 +38,8 @@ const FormCompartilhamento = () => {
     };
 
     let sendDataReturn;
-    sendDataReturn = fetch("http://localhost:5001/create_consent", {
+    // sendDataReturn = fetch("http://localhost:5001/create_consent", { // https://acc-manager.southindia.cloudapp.azure.com/
+    sendDataReturn = fetch("https://acc-manager.southindia.cloudapp.azure.com/create_consent", {
       method: "POST",
       headers: {
         Accept: "application/json",
